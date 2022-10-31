@@ -83,11 +83,11 @@ def main() -> None:
 
     first_indices = list(range(2_309))
     min_days_until_repeat = 366
-    num_years = 3
+    num_repeats = 5
     random.shuffle(first_indices)
     wordle_indices = [first_indices]
 
-    for _ in range(num_years - 1):
+    for _ in range(num_repeats - 1):
         wordle_indices.append(
             shuffle_min_dist(wordle_indices[-1], min_days_until_repeat)
         )
