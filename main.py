@@ -77,7 +77,7 @@ def main() -> None:
     """Shuffle Wordle indices as a proof of concept.
 
     Does a shuffle preserving minimum distance, then shuffles the list
-    lightly, and removes and inserts some random items.
+    lightly, and removes some random items.
     """
     random.seed("I <3 Quanta")
 
@@ -92,9 +92,12 @@ def main() -> None:
             shuffle_min_dist(wordle_indices[-1], min_days_until_repeat)
         )
 
+    # Concatenate, partially shuffle, and remove random items from the sequences.
     wordle_indices = ft.reduce(op.add, wordle_indices)
     wordle_indices = partial_shuffle(wordle_indices, 0.15)
-    print(wordle_indices)
+    wordle_indices = list(filter(lambda x: random.random() > 0.05, wordle_indices))
+
+    print(len(wordle_indices))
 
 
 if __name__ == "__main__":
